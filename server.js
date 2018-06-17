@@ -3,9 +3,9 @@ var app = express();
 var http = require('http').Server(app);
 var io = require('socket.io')(http);
 var mongoose = require('mongoose');
-const URL = "mongodb://sinchi:3afritto@ds261540.mlab.com:61540/my-chilf-app";
+const URI = "mongodb://sinchi:3afritto@ds261540.mlab.com:61540/my-chilf-app";
 
-mongoose.connect().then( _ => {
+mongoose.connect(URI).then( _ => {
   console.log("connection OK");
 }, err => {
   console.log("Error: ", err);
