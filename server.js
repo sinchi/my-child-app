@@ -28,6 +28,23 @@ io.on('connection', function(socket){
   socket.on('test', function(data) {
     console.log(data);
   });
+
+
+  // parent request position of his child
+  socket.on('position', _ => {
+    // send request postion to child
+    socket.emit('request.child.position');
+  });
+
+  // response of child position
+  socket.on('response.child.position', position => {
+    // resend the child response position to parent
+    socket.emit('position', {
+      position: position
+    });
+  });
+
+
   io.emit('new message', {
       username: 'ayoub',
       message: 'bonjour'
