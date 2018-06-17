@@ -31,7 +31,8 @@ io.on('connection', function(socket){
 
 
   // parent request position of his child
-  socket.on('position', _ => {
+  socket.on('position', req => {
+    console.log(req);
     // send request postion to child
     socket.emit('request.child.position');
   });
