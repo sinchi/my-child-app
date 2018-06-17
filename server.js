@@ -5,10 +5,8 @@ var io = require('socket.io')(http);
 var mongoose = require('mongoose');
 const URI = "mongodb://sinchi:3afritto@ds261540.mlab.com:61540/my-chilf-app";
 
-mongoose.connect(URI).then( _ => {
+mongoose.connect(URI, _ => {
   console.log("connection OK");
-}, err => {
-  console.log("Error: ", err);
 });
 app.use(express.static(__dirname + '/public/index.html'));
 
