@@ -3,7 +3,7 @@ var app = express();
 var http = require('http').Server(app);
 var io = require('socket.io')(http);
 var mongoose = require('mongoose');
-const URI = "mongodb://sinchi:3afritto@ds261540.mlab.com:61540/my-chilf-app";
+const URI = "mongodb://my-child:3afritto@ds261540.mlab.com:61540/my-chilf-app";
 
 const options = {
   useMongoClient: true,
