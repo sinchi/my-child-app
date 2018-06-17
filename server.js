@@ -21,7 +21,7 @@ io.on('connection', function(socket){
   });
 });
 
-
-http.listen(3000, function(){
+const PORT = process.env.PORT || 8080;
+http.listen(PORT, function(){
   console.log('listening on *:3000');
 })
