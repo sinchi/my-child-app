@@ -31,14 +31,16 @@ io.on('connection', function(socket){
 
 
   // parent request position of his child
-  socket.on('position', req => {
-    console.log(req);
+  socket.on('position', function(pos) {
+    console.log(pos);
     // send request postion to child
-    socket.emit('request.child.position');
+    socket.emit('request.child.position', {
+      msg: "get.postion"
+    });
   });
 
   // response of child position
-  socket.on('response.child.position', position => {
+  socket.on('response.child.position', function(position) {
     // resend the child response position to parent
     socket.emit('position', {
       position: position
