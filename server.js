@@ -40,10 +40,10 @@ io.on('connection', function(socket){
   });
 
   // response of child position
-  socket.on('response_child_position', function(position) {
+  socket.on('response_child_position', function(data) {
     // resend the child response position to parent
     io.emit('position', {
-      position: position
+      position: data
     });
   });
 
