@@ -50,7 +50,7 @@ io.on('connection', function(socket){
 
 
   io.emit('new message', {
-      username: 'ayoub',
+      username: 'ayoub', //
       message: 'bonjour'
   });
 });
