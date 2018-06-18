@@ -34,7 +34,7 @@ io.on('connection', function(socket){
   socket.on('get_position', function(data) {
     console.log(data);
     // send request postion to child
-    socket.emit('request_child_position', {
+    io.emit('request_child_position', {
       msg: "get_postion"
     });
   });
@@ -42,7 +42,7 @@ io.on('connection', function(socket){
   // response of child position
   socket.on('response_child_position', function(position) {
     // resend the child response position to parent
-    socket.emit('position', {
+    io.emit('position', {
       position: position
     });
   });
