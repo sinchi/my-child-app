@@ -44,7 +44,7 @@ io.on('connection', function(socket){
     console.log(data);
     // resend the child response position to parent
     io.emit('position', {
-      position: data
+      position: JSON.stringify(data)
     });
   });
 
