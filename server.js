@@ -41,6 +41,7 @@ io.on('connection', function(socket){
 
   // response of child position
   socket.on('response_child_position', function(data) {
+    console.log(data);
     // resend the child response position to parent
     io.emit('position', {
       position: data
