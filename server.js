@@ -3,8 +3,15 @@ var app = express();
 var http = require('http').Server(app);
 var io = require('socket.io')(http);
 var mongoose = require('mongoose');
+var bodyParser = require('body-parser');
 const URI = "mongodb://my-child:3afritto@ds261540.mlab.com:61540/my-chilf-app";
 const ChildController = require('./controllers/ChildController');
+
+// parse application/x-www-form-urlencoded
+app.use(bodyParser.urlencoded({ extended: false }));
+ 
+// parse application/json
+app.use(bodyParser.json());
 
 const options = {
   useMongoClient: true,
