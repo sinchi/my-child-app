@@ -4,6 +4,7 @@ var http = require('http').Server(app);
 var io = require('socket.io')(http);
 var mongoose = require('mongoose');
 const URI = "mongodb://my-child:3afritto@ds261540.mlab.com:61540/my-chilf-app";
+const ChildController = require('./controllers/ChildController');
 
 const options = {
   useMongoClient: true,
@@ -22,6 +23,9 @@ app.use(express.static(__dirname + '/public/index.html'));
 app.get('/', function(req, res){
   res.status(200).send({ msg: 'hello' });
 });
+
+
+app.post('/add_child', ChildController.addChild);
 
 io.on('connection', function(socket){
   console.log('a user connected');
