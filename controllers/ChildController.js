@@ -20,7 +20,7 @@ exports.addChild = function(req, res, next){
 exports.addLieuVisite = function(req, res, next) {
     const data =  req.body;
 
-  /*  if(data) {
+   /* if(data) {        
         const lieuVisite = new LieuVisiteModel(data);
         lieuVisite.save(function(err, lieu) {
             if(!err) {
@@ -30,7 +30,6 @@ exports.addLieuVisite = function(req, res, next) {
             res.status(401).send({ err: err });
         });
     }*/
-
-    res.status(200).send({ msg: "OKOK addLieu" })
+    res.status(200).send(data);
 }
 
