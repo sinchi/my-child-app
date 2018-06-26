@@ -27,9 +27,8 @@ exports.addLieuVisite = function(req, res, next) {
                return  res.status(200).send(lieu);
             }
 
-            res.status(401).send({ err: err });
+            return res.status(401).send({ err: err });
         });
-    }
-    res.status(200).send(data);
+    }    
 }
 
