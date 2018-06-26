@@ -1,4 +1,5 @@
 const ChildModel = require('../model/child');
+const LieuVisiteModel = require('../model/lieuVisite');
 
 exports.addChild = function(req, res, next){  
 
@@ -13,5 +14,21 @@ exports.addChild = function(req, res, next){
   });*/
 
   res.status(200).send({ msg: "added with success " + JSON.stringify(data) });
+}
+
+
+exports.addLieuVisite = function(req, res, next) {
+    const data =  req.body;
+
+    if(data) {
+        const lieuVisite = new LieuVisiteModel(data);
+        lieuVisite.save(function(err, lieu) {
+            if(!err) {
+               return  res.status(200).send(lieu);
+            }
+
+            res.status(401).send({ err: err });
+        });
+    }
 }
 
