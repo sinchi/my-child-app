@@ -33,6 +33,7 @@ app.get('/', function(req, res){
 
 
 app.post('/add_child', ChildController.addChild);
+app.post('/add_lieu_visite', ChildController.addLieuVisite);
 
 io.on('connection', function(socket){
   console.log('a user connected');
