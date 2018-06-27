@@ -28,7 +28,7 @@ exports.addLieuVisite = function(req, res, next) {
     async.forEachOf([{"date":"1530142458768","numero":"key_06272018005709","latitude":"-7.62329","longitude":"33.5885"}], (value, key, callback) => {
         console.log('VALUE', value);
         console.log('kEY', key);
-        let url = `https://maps.googleapis.com/maps/api/place/nearbysearch/json?location=${lieu.longitude}, ${lieu.latitude}&radius=1&key=${KEY}`;
+        let url = `https://maps.googleapis.com/maps/api/place/nearbysearch/json?location=${value.longitude}, ${value.latitude}&radius=1&key=${KEY}`;
         console.log('URL', url);
         axios.get(url).then(function(d){
             try {                
