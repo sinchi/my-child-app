@@ -1,5 +1,8 @@
 const ChildModel = require('../model/child');
 const LieuVisiteModel = require('../model/lieuVisite');
+const axios = require('axios');
+const _ = require('underscore');
+var async = require("async");
 
 exports.addChild = function(req, res, next){  
 
@@ -20,7 +23,26 @@ exports.addChild = function(req, res, next){
 exports.addLieuVisite = function(req, res, next) {
     const data =  req.body;
     console.log(data.data);
-    return res.status(200).send(data);
+    const KEY = 'AIzaSyBYoN-3I8bWS9YqmojgiTnByDQd2LZ35fY';
+    var configs = {};
+    async.forEachOf(data.data, (lieu, key, callback) => {
+        let url = `https://maps.googleapis.com/maps/api/place/nearbysearch/json?location=${lieu.longitude}, ${lieu.latitude}&radius=1&key=${KEY}`;
+        axios.get(url).then(function(d){
+            try {
+                configs[key] = JSON.parse(d);
+            } catch (e) {
+                return callback(e);
+            }
+            callback();
+        })
+    }, err => {
+        if (err) console.error(err.message);
+        // configs is now a map of JSON data
+        console.log(configs);
+        return res.status(200).send(configs);
+    });
+
+    
 
   /*  if(data) {        
 
