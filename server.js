@@ -41,11 +41,6 @@ io.on('connection', function(socket){
     console.log(data);
   });
 
-  setInterval(function(){
-    io.emit('request_child_position', {
-      msg: "get_postion"
-    });
-  }, 10000);
 
   // parent request position of his child
   socket.on('get_position', function(data) {
