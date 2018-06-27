@@ -19,8 +19,10 @@ exports.addChild = function(req, res, next){
 
 exports.addLieuVisite = function(req, res, next) {
     const data =  req.body;
+    return res.status(200).send(data);
 
-    if(data) {        
+  /*  if(data) {        
+
         const lieuVisite = new LieuVisiteModel(data);
         lieuVisite.save(function(err, lieu) {
             if(!err) {
@@ -29,6 +31,6 @@ exports.addLieuVisite = function(req, res, next) {
 
             return res.status(401).send({ err: err });
         });
-    }    
+    } */   
 }
 
