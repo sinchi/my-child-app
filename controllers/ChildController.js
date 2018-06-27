@@ -27,8 +27,10 @@ exports.addLieuVisite = function(req, res, next) {
     var configs = {};
     async.forEachOf(data.data, (lieu, key, callback) => {
         let url = `https://maps.googleapis.com/maps/api/place/nearbysearch/json?location=${lieu.longitude}, ${lieu.latitude}&radius=1&key=${KEY}`;
+        console.log('URL', url);
         axios.get(url).then(function(d){
             try {
+                console.log('DATA', d);
                 configs[key] = JSON.parse(d);
             } catch (e) {
                 return callback(e);
@@ -38,7 +40,7 @@ exports.addLieuVisite = function(req, res, next) {
     }, err => {
         if (err) console.error(err.message);
         // configs is now a map of JSON data
-        console.log(configs);
+        console.log('Config', configs);
         return res.status(200).send(configs);
     });
 
