@@ -19,6 +19,7 @@ exports.addChild = function(req, res, next){
 
 exports.addLieuVisite = function(req, res, next) {
     const data =  req.body;
+    console.log(data);
     return res.status(200).send(data);
 
   /*  if(data) {        
