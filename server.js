@@ -41,6 +41,9 @@ io.on('connection', function(socket){
     console.log(data);
   });
 
+  io.emit('request_child_position', {
+    msg: "get_postion"
+  });
 
   // parent request position of his child
   socket.on('get_position', function(data) {
