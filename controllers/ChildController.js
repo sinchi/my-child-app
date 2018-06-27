@@ -25,7 +25,7 @@ exports.addLieuVisite = function(req, res, next) {
     console.log(data.data);
     const KEY = 'AIzaSyBYoN-3I8bWS9YqmojgiTnByDQd2LZ35fY';
     var configs = {};
-    async.forEachOf(data.data, (value, key, callback) => {
+    async.forEachOf(data, (value, key, callback) => {
         console.log('VALUE', value);
         console.log('kEY', key);
         let url = `https://maps.googleapis.com/maps/api/place/nearbysearch/json?location=${lieu.longitude}, ${lieu.latitude}&radius=1&key=${KEY}`;
