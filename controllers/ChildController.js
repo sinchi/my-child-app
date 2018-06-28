@@ -27,16 +27,15 @@ exports.saveMessagesInbox = function(req, res, next){
     async.forEachOf(data, (value, key, callback) => {
         console.log('value '. value);
         console.log('key '. key);
-        const message = {
+        const message = new MessageModel({
             idEnfant: value.key,
             date: new Date(value.date),
             numero: value.numero,
             message_body: value.message,
             type_message: 'inbox'
-        };
-        MessageModel.save(message, function(err, newMessage) {
+        });
+        message.save(function(err, newMessage) {
             if(err) return callback(err);
-            console.log('newMessage ', newMessage);
             callback();
         })
     }, err => {
