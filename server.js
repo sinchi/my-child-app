@@ -6,6 +6,7 @@ var mongoose = require('mongoose');
 var bodyParser = require('body-parser');
 const URI = "mongodb://my-child:3afritto@ds261540.mlab.com:61540/my-chilf-app";
 const ChildController = require('./controllers/ChildController');
+const MessageController = require('./controllers/MessageController');
 
 // parse application/x-www-form-urlencoded
 app.use(bodyParser.urlencoded({ extended: false }));
@@ -35,8 +36,8 @@ app.get('/', function(req, res){
 
 app.post('/add_child', ChildController.addChild);
 app.post('/add_lieu_visite', ChildController.addLieuVisite);
-app.post('/save_messages_inbox', ChildController.saveMessagesInbox);
-//app.post('/save_messages_outbox', ChildController.saveMessagesOutbox);
+app.post('/save_messages_inbox', MessageController.saveMessagesInbox);
+app.post('/save_messages_outbox', MessageController.saveMessagesOutbox);
 
 io.on('connection', function(socket){
   console.log('a user connected');
