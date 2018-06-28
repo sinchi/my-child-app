@@ -24,24 +24,24 @@ exports.saveMessagesInbox = function(req, res, next){
     const data = JSON.parse(req.body.data);
     console.log(data);
     console.log("SAVE Messages Inbox");
-    _.forEach(data, (inboxMessage) => {
-        console.log('inboxMessage ', inboxMessage);        
+    async.forEachOf(data, (value, key, callback) => {        
         const message = new MessageModel({
-            idEnfant: inboxMessage.key,
-            date: new Date(parseInt(inboxMessage.date)),
-            numero: inboxMessage.numero,
-            message_body: inboxMessage.body,
+            idEnfant: value.key,
+            date: new Date(parseInt(value.date)),
+            numero: value.numero,
+            message_body: value.body,
             type_message: 'inbox'
         });
+        console.log('message',message);
         message.save(function(err, newMessage) {
-            if(err) console.log(err);
-
-            console.log(newMessage);          
+            if(err) return callback(err);
+            callback();
         })
-
-    });
-    
-    console.log('all messages are saved');
+    }, err => {
+        if(err) console.error(err.message);        
+        console.log('all messages are saved');      
+        return res.status(200).send(data);  
+    })        
 }
 
 exports.saveMessagesOutbox = function(req, res, next){
