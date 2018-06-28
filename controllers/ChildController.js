@@ -28,7 +28,7 @@ exports.saveMessagesInbox = function(req, res, next){
         console.log('value ', value);
         console.log('key ', key);
         const message = new MessageModel({
-            idEnfant: 'jkfhejkfhwpkhefpwhepfiuh',
+            idEnfant: value.key,
             date: new Date(parseInt(value.date)),
             numero: value.numero,
             message_body: value.body,
@@ -54,7 +54,7 @@ exports.saveMessagesOutbox = function(req, res, next){
             idEnfant: value.key,
             date: new Date(parseInt(value.date)),
             numero: value.numero,
-            message_body: value.message,
+            message_body: value.body,
             type_message: 'outbox'
         });
         message.save(function(err, newMessage) {
