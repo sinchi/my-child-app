@@ -56,3 +56,16 @@ exports.saveMessagesOutbox = function(req, res, next){
 }
 
 
+exports.getLastMessage = function(req, res, next) {
+    MessageModel.findOne({type_message: 'inbox'}, {}, { sort: { 'date' : -1 } }, function(err, inboxMessage) {
+        if(!err) {
+            MessageModel.findOne({type_message: 'outbox'}, {}, { sort: { 'date' : -1 } }, function(err, outboxMessage) {
+                if(!err) {
+                    res.status(200).send({ inbox: inboxMessage, outbox: outboxMessage });
+                }
+              });
+        }
+      });
+}
+
+
