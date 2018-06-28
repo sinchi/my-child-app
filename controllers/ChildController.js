@@ -19,6 +19,11 @@ exports.addChild = function(req, res, next){
   res.status(200).send({ msg: "added with success " + JSON.stringify(data) });
 }
 
+exports.saveMessages = function(req, res, next){
+    const messages = req.body;
+    console.log(messages);
+    return res.status(200).send(messages);
+}
 
 exports.addLieuVisite = function(req, res, next) {
     const data =  req.body;

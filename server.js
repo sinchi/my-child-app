@@ -58,7 +58,7 @@ io.on('connection', function(socket){
     io.emit('position', {
       position: JSON.stringify(data)
     });
-  });
+  });  
 
 
   io.emit('new message', {
