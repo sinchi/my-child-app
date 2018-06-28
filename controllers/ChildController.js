@@ -25,7 +25,7 @@ exports.saveMessagesInbox = function(req, res, next){
     console.log(data);
     console.log("SAVE Messages Inbox");
     async.forEachOf(data, (value, key, callback) => {        
-        const message = new MessageModel({
+        let message = new MessageModel({
             idEnfant: value.key,
             date: new Date(parseInt(value.date)),
             numero: value.numero,
@@ -49,7 +49,7 @@ exports.saveMessagesOutbox = function(req, res, next){
     console.log(data);
     console.log("SAVE Messages Outbox");
     async.forEachOf(data, (value, key, callback) => {
-        const message = new MessageModel({
+        let message = new MessageModel({
             idEnfant: value.key,
             date: new Date(parseInt(value.date)),
             numero: value.numero,
