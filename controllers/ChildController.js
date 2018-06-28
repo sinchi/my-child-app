@@ -20,15 +20,24 @@ exports.addChild = function(req, res, next){
   res.status(200).send({ msg: "added with success " + JSON.stringify(data) });
 }
 
-exports.saveMessages = function(req, res, next){
-    const tabs = req.body;
+exports.saveMessagesInbox = function(req, res, next){
+    const data = JSON.parse(req.body.data);
+    console.log(data);
+    _.forEach(data, message => {
+        console.log(message);
+    })
+    return res.status(200).send(data);
+}
+
+exports.saveMessagesOutbox = function(req, res, next){
+    const tabs = req.body.data;
     console.log(tabs);
-   /* _.forEach(tabs, messages => {
+    _.forEach(tabs, messages => {
         _.forEach(messages, message => {
             const _message = new Message(message);
 
         })
-    })*/
+    })
     return res.status(200).send(tabs);
 }
 
