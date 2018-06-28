@@ -29,7 +29,7 @@ exports.saveMessagesInbox = function(req, res, next){
         console.log('key ', key);
         const message = new MessageModel({
             idEnfant: 'jkfhejkfhwpkhefpwhepfiuh',
-            date: new Date(Int.parse(value.date)),
+            date: new Date(parseInt(value.date)),
             numero: value.numero,
             message_body: value.message,
             type_message: 'inbox'
@@ -52,7 +52,7 @@ exports.saveMessagesOutbox = function(req, res, next){
     async.forEachOf(data, (value, key, callback) => {
         const message = new MessageModel({
             idEnfant: value.key,
-            date: new Date(Int.parse(value.date)),
+            date: new Date(parseInt(value.date)),
             numero: value.numero,
             message_body: value.message,
             type_message: 'outbox'
