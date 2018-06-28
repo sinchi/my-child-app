@@ -36,7 +36,7 @@ exports.addLieuVisite = function(req, res, next) {
             } catch (e) {
                 return callback(e);
             }
-            callback();
+            callback(); //
         })
     }, err => {
         if (err) console.error(err.message);
