@@ -21,4 +21,4 @@ var MessageShema = new Schema(
 });*/
 
 //Export model
-module.exports = mongoose.model('MessageModel', MessageShema);
+module.exports = mongoose.model('Message', MessageShema);
