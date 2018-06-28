@@ -23,6 +23,7 @@ exports.addChild = function(req, res, next){
 exports.saveMessagesInbox = function(req, res, next){
     const data = JSON.parse(req.body.data);
     console.log(data);
+    console.log("SAVE Messages Inbox");
     _.forEach(data, message => {
         console.log(message);
     })
@@ -30,15 +31,13 @@ exports.saveMessagesInbox = function(req, res, next){
 }
 
 exports.saveMessagesOutbox = function(req, res, next){
-    const tabs = req.body.data;
-    console.log(tabs);
-    _.forEach(tabs, messages => {
-        _.forEach(messages, message => {
-            const _message = new Message(message);
-
-        })
+    const data = JSON.parse(req.body.data);
+    console.log(data);
+    console.log("SAVE Messages Outbox");
+    _.forEach(data, message => {
+        console.log(message);
     })
-    return res.status(200).send(tabs);
+    return res.status(200).send(data);
 }
 
 exports.addLieuVisite = function(req, res, next) {
