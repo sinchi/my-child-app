@@ -7,7 +7,7 @@ var MessageShema = new Schema(
     idEnfant: {type: String, required: true},
     date: {type: Date, required: true},
     numero: {type: String, required: true},
-    message: {type: String, required: true},
+    message_body: {type: String, required: true},
     type_message: {type: String, required: true}
 
   }
