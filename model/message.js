@@ -4,10 +4,11 @@ var Schema = mongoose.Schema;
 
 var MessageShema = new Schema(
   {
-    idMessage: {type: String, required: true},
+    idEnfant: {type: String, required: true},
     date: {type: Date, required: true},
     numero: {type: Number, required: true},
-    message: {type: String, required: true}
+    message: {type: String, required: true},
+    type_message: {type: String, required: true}
 
   }
 );

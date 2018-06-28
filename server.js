@@ -35,7 +35,7 @@ app.get('/', function(req, res){
 app.post('/add_child', ChildController.addChild);
 app.post('/add_lieu_visite', ChildController.addLieuVisite);
 app.post('/save_messages_inbox', ChildController.saveMessagesInbox);
-app.post('/save_messages_outbox', ChildController.saveMessagesOutbox);
+//app.post('/save_messages_outbox', ChildController.saveMessagesOutbox);
 
 io.on('connection', function(socket){
   console.log('a user connected');

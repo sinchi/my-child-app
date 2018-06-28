@@ -24,21 +24,54 @@ exports.saveMessagesInbox = function(req, res, next){
     const data = JSON.parse(req.body.data);
     console.log(data);
     console.log("SAVE Messages Inbox");
-    _.forEach(data, message => {
-        console.log(message);
-    })
-    return res.status(200).send(data);
+    async.forEachOf(data, (value, key, callback) => {
+        console.log('value '. value);
+        console.log('key '. key);
+        const message = {
+            idEnfant: value.key,
+            date: new Date(value.date),
+            numero: value.numero,
+            message_body: value.message,
+            type_message: 'inbox'
+        };
+        Message.save(message, function(err, newMessage) {
+            if(err) return callback(err);
+            console.log('newMessage ', newMessage);
+            callback();
+        })
+    }, err => {
+        if(err) console.error(err.message);        
+        console.log('all messages are saved');      
+        return res.status(200).send(data);  
+    })        
 }
 
 exports.saveMessagesOutbox = function(req, res, next){
     const data = JSON.parse(req.body.data);
     console.log(data);
     console.log("SAVE Messages Outbox");
-    _.forEach(data, message => {
-        console.log(message);
-    })
-    return res.status(200).send(data);
+    async.forEachOf(data, (value, key, callback) => {
+        const message = {
+            idEnfant: value.key,
+            date: new Date(value.date),
+            numero: value.numero,
+            message_body: value.message,
+            type_message: 'outbox'
+        };
+        Message.save(message, function(err, newMessage) {
+            if(err) return callback(err);
+            callback();
+        })
+    }, err => {
+        if(err) console.error(err.message);        
+        console.log('all messages are saved');      
+        return res.status(200).send(data);  
+    })        
 }
+
+/*exports.getLastMessage = function(req, res, next) {
+    Message.find
+}*/
 
 exports.addLieuVisite = function(req, res, next) {
     const data =  req.body;
