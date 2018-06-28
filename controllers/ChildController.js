@@ -33,11 +33,14 @@ exports.saveMessagesInbox = function(req, res, next){
             type_message: 'inbox'
         });
         console.log('message',message);
-        message.save(function(err, newMessage) {
-            if(err) return callback(err);
+
+        MessageModel.create(message, function (errr, newMessage) {
+            if(errr) return callback(errr);
+
             console.log("NEW",newMessage);
             callback();
-        })
+          });
+        
     }, err => {
         if(err) console.error(err.message);        
         console.log('all messages are saved');      
