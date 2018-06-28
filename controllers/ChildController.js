@@ -1,6 +1,6 @@
 const ChildModel = require('../model/child');
 const LieuVisiteModel = require('../model/lieuVisite');
-const Message = require('../model/message');
+const MessageModel = require('../model/message');
 const axios = require('axios');
 const _ = require('underscore');
 var async = require("async");
@@ -34,7 +34,7 @@ exports.saveMessagesInbox = function(req, res, next){
             message_body: value.message,
             type_message: 'inbox'
         };
-        Message.save(message, function(err, newMessage) {
+        MessageModel.save(message, function(err, newMessage) {
             if(err) return callback(err);
             console.log('newMessage ', newMessage);
             callback();
@@ -51,14 +51,14 @@ exports.saveMessagesOutbox = function(req, res, next){
     console.log(data);
     console.log("SAVE Messages Outbox");
     async.forEachOf(data, (value, key, callback) => {
-        const message = {
+        const message = new MessageModel({
             idEnfant: value.key,
             date: new Date(value.date),
             numero: value.numero,
             message_body: value.message,
             type_message: 'outbox'
-        };
-        Message.save(message, function(err, newMessage) {
+        });
+        message.save(function(err, newMessage) {
             if(err) return callback(err);
             callback();
         })
