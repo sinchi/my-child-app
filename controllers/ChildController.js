@@ -35,7 +35,8 @@ exports.saveMessagesInbox = function(req, res, next){
         console.log('message',message);
         message.save(function(err, newMessage) {
             if(err) return callback(err);
-            console.log(newMessage);
+            console.log("NEW",newMessage);
+            callback();
         })
     }, err => {
         if(err) console.error(err.message);        
