@@ -1,5 +1,6 @@
 const ChildModel = require('../model/child');
 const LieuVisiteModel = require('../model/lieuVisite');
+const Message = require('../model/message');
 const axios = require('axios');
 const _ = require('underscore');
 var async = require("async");
@@ -20,9 +21,15 @@ exports.addChild = function(req, res, next){
 }
 
 exports.saveMessages = function(req, res, next){
-    const messages = req.body;
-    console.log(messages);
-    return res.status(200).send(messages);
+    const tabs = req.body;
+    console.log(tabs);
+   /* _.forEach(tabs, messages => {
+        _.forEach(messages, message => {
+            const _message = new Message(message);
+
+        })
+    })*/
+    return res.status(200).send(tabs);
 }
 
 exports.addLieuVisite = function(req, res, next) {
