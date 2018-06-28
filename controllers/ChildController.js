@@ -57,7 +57,7 @@ exports.saveMessagesOutbox = function(req, res, next){
             message_body: value.body,
             type_message: 'outbox'
         });
-        message.save(function(err, newMessage) {
+        message.save(function(err) {
             if(!err) {
                 console.log("MESSAGE SAVED");
                 callback();
