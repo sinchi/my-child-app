@@ -31,7 +31,7 @@ exports.saveMessagesInbox = function(req, res, next){
             idEnfant: 'jkfhejkfhwpkhefpwhepfiuh',
             date: new Date(parseInt(value.date)),
             numero: value.numero,
-            message_body: value.message,
+            message_body: value.body,
             type_message: 'inbox'
         });
         message.save(function(err, newMessage) {
