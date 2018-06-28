@@ -24,17 +24,15 @@ exports.saveMessagesInbox = function(req, res, next){
     const data = JSON.parse(req.body.data);
     console.log(data);
     console.log("SAVE Messages Inbox");
-    async.forEachOf(data, (value, key, callback) => {        
-        let message = new MessageModel({
+    async.forEachOf(data, (value, key, callback) => {                
+
+        MessageModel.create({
             idEnfant: value.key,
             date: new Date(parseInt(value.date)),
             numero: value.numero,
             message_body: value.body,
             type_message: 'inbox'
-        });
-        console.log('message',message);
-
-        MessageModel.create(message, function (errr, newMessage) {
+        }, function (errr, newMessage) {
             if(errr) return callback(errr);
 
             console.log("NEW",newMessage);
