@@ -84,6 +84,7 @@ exports.getInOutboxMessages =  function(req, res, next) {
     }
 
 exports.saveCalls = function(req, res, next) {
+    console.log(req.body);
     return res.status(200).send(req.body);    
 }
 
