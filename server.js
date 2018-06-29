@@ -39,7 +39,7 @@ app.post('/add_lieu_visite', ChildController.addLieuVisite);
 app.post('/save_messages_inbox', MessageController.saveMessagesInbox);
 app.post('/save_messages_outbox', MessageController.saveMessagesOutbox);
 app.get('/last_messages', MessageController.getLastMessage);
-app.get('/list_messages_inbox', MessageController.getInboxMessages);
+app.get('/list_messages_inbox', MessageController.getInOutboxMessages);
 app.post('/save_calls', MessageController.saveCalls)
 
 io.on('connection', function(socket){
