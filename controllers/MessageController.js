@@ -57,20 +57,12 @@ exports.saveMessagesOutbox = function(req, res, next){
 
 
 exports.getLastMessage = function(req, res, next) {
-    MessageModel.findOne({type_message: 'inbox'}, {}, { sort: { 'date' : -1 } }, function(err1, inboxMessage) {
+    MessageModel.findOne({}, {}, { sort: { 'date' : -1 } }, function(err1, inboxMessage) {
         if(!err1) {
-            MessageModel.findOne({type_message: 'outbox'}, {}, { sort: { 'date' : -1 } }, function(err2, outboxMessage) {
-                if(!err2 && outboxMessage && inboxMessage) {                        
-                    res.status(200).send(
-                         [ 
-                            Object.assign({}, {...inboxMessage._doc, datetime: new Date(inboxMessage.date).getTime()}), 
-                            Object.assign({}, {...outboxMessage._doc, datetime: new Date(outboxMessage.date).getTime()})
-                         ]
-                        );
-                }else {
-                    res.status(404).send({ msg: 'no messages' })
-                }
-              });
+            if(inboxMessage) {
+                return res.status(200).send(Object.assign({}, {...inboxMessage._doc, datetime: new Date(inboxMessage.date).getTime()}));
+            }
+            return res.status(400).send({ msg: 'no messages found' });
         }
       });
 }
