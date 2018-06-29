@@ -73,4 +73,12 @@ exports.getLastMessage = function(req, res, next) {
       });
 }
 
+exports.getInboxMessages =  function(req, res, next) {
+    MessageModel.find({type_message: 'inbox'}, {}, { sort: { 'date' : -1 } }, function(err, inboxMessages) {
+        if(!err) {
+            res.status(200).send(inboxMessages);
+        }
+      });
+    }
+
 
