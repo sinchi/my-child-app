@@ -3,12 +3,13 @@ var mongoose = require('mongoose');
 var Schema = mongoose.Schema;
 
 var AppelShema = new Schema(
-  {
-    idAppel: {type: String, required: true},
-    date: {type: Date, required: true},
-    numero: {type: Number, required: true},
-    duree: {type: String, required: true}
-
+  {    
+   
+    numero: {type: Number, required: true},    
+    key: { type: String, required: true },
+    call_type: { type: String, required: true },
+    call_date: { type: Date },
+    call_duration: { type: String, required: true }
 
   }
 );
