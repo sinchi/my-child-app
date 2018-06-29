@@ -62,8 +62,8 @@ exports.getLastMessage = function(req, res, next) {
             MessageModel.findOne({type_message: 'outbox'}, {}, { sort: { 'date' : -1 } }, function(err, outboxMessage) {
                 if(!err) {                                        
                     res.status(200).send({
-                         inbox: Object.assign({}, {inboxMessage, datetime: new Date(inboxMessage.date).getTime()}), 
-                         outbox: Object.assign({}, {outboxMessage, datetime: new Date(outboxMessage.date).getTime()}) 
+                         inbox: Object.assign({}, {...inboxMessage, datetime: new Date(inboxMessage.date).getTime()}), 
+                         outbox: Object.assign({}, {...outboxMessage, datetime: new Date(outboxMessage.date).getTime()}) 
                         });
                 }
               });
