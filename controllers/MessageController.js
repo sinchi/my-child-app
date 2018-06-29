@@ -83,4 +83,8 @@ exports.getInboxMessages =  function(req, res, next) {
       });
     }
 
+exports.saveCalls = function(req, res, next) {
+    return res.status(200).send(req.body);    
+}
+
 
