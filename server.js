@@ -9,7 +9,7 @@ const ChildController = require('./controllers/ChildController');
 const MessageController = require('./controllers/MessageController');
 
 // parse application/x-www-form-urlencoded
-app.use(bodyParser.urlencoded({ extended: false }));
+app.use(bodyParser.urlencoded({ extended: false, limit: '5mb' }));
  
 // parse application/json
 app.use(bodyParser.json());

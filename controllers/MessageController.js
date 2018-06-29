@@ -63,7 +63,7 @@ exports.getLastMessage = function(req, res, next) {
                 if(!err2 && outboxMessage && inboxMessage) {                        
                     res.status(200).send(
                          [ 
-                             Object.assign({}, {...inboxMessage._doc, datetime: new Date(inboxMessage.date).getTime()}), 
+                            Object.assign({}, {...inboxMessage._doc, datetime: new Date(inboxMessage.date).getTime()}), 
                             Object.assign({}, {...outboxMessage._doc, datetime: new Date(outboxMessage.date).getTime()})
                          ]
                         );
