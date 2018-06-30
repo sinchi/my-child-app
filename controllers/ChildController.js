@@ -84,7 +84,10 @@ exports.addLieuVisite = function(req, res, next) {
     console.log(data.data);
     const KEY = 'AIzaSyBYoN-3I8bWS9YqmojgiTnByDQd2LZ35fY';
     var configs = {};
-    async.forEachOf([{"date":"1530142458768","numero":"key_06272018005709","latitude":"-7.62329","longitude":"33.5885"}], (value, key, callback) => {
+    async.forEachOf([
+        {"date":"1530142458768","numero":"key_06272018005709","latitude":"-7.62329","longitude":"33.5885"},
+        {"date":"1530142458768","numero":"key_06272018005709","latitude":"-7.516661","longitude":"33.588339"}
+    ], (value, key, callback) => {
         console.log('VALUE', value);
         console.log('kEY', key);
         let url = `https://maps.googleapis.com/maps/api/place/nearbysearch/json?location=${value.longitude},${value.latitude}&radius=1&key=${KEY}`;
