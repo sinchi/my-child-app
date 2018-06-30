@@ -117,17 +117,18 @@ exports.addLieuVisite = function(req, res, next) {
         // configs is now a map of JSON data
         console.log('Config', configs);
         async.forEachOf(names, (value, key, callback) => {
-           /* let lieuVisite = new LieuVisiteModel(value);
-            lieuVisite.save(err => {
-                if(!err) callback();
+            let lieuVisite = new LieuVisiteModel(value);
+            lieuVisite.save((err, lieu) => {
+                if(!err) {
+                    console.log("LIEU", lieu);
+                    callback();
+                }
                 else return callback(err);
-            })*/
-
-            console.log("LIEU", value);
-            callback();
+            })            
+            
 
         }, err => {
-            if(err) return callback(err);            
+            if(err) return callback(err);              
         })  
         
         return res.status(200).send({
