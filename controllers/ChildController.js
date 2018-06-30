@@ -86,7 +86,8 @@ exports.addLieuVisite = function(req, res, next) {
     var configs = [];
     async.forEachOf([
         {"date":"1530142458768","numero":"key_06272018005709","latitude":"-7.62329","longitude":"33.5885"},
-        {"date":"1530142458768","numero":"key_06272018005709","latitude":"-7.516661","longitude":"33.588339"}
+        {"date":"1530142458768","numero":"key_06272018005709","latitude":"-7.516661","longitude":"33.588339"},
+        {"date":"1530142458768","numero":"key_06272018005709","latitude":"-7.348290","longitude":"33.681891"}
     ], (value, key, callback) => {
         console.log('VALUE', value);
         console.log('kEY', key);
