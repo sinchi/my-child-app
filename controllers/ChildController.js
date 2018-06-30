@@ -89,17 +89,14 @@ exports.addLieuVisite = function(req, res, next) {
         {"date":"1530142458768","numero":"key_06272018005709","latitude":"-7.62329","longitude":"33.5885"},
         {"date":"1530142458768","numero":"key_06272018005709","latitude":"-7.516661","longitude":"33.588339"},
         {"date":"1530142458768","numero":"key_06272018005709","latitude":"-7.348290","longitude":"33.681891"}
-    ], (value, key, callback) => {
-        console.log('VALUE', value);
-        console.log('kEY', key);
-        let url = `https://maps.googleapis.com/maps/api/place/nearbysearch/json?location=${value.longitude},${value.latitude}&radius=1&key=${KEY}`;
-        console.log('URL', url);
+    ], (value, key, callback) => {        
+        let url = `https://maps.googleapis.com/maps/api/place/nearbysearch/json?location=${value.longitude},${value.latitude}&radius=1&key=${KEY}`;      
         axios.get(url).then(function(d){
             try {              
                // console.log("DDD", d.data); 
                 let data = d.data; 
                 let place = data.results[0];
-                console.log("PLACE", place);
+              //  console.log("PLACE", place);
                 names.push({
                     lieuVisite: place.name, 
                     date: new Date(parseInt(value.date)),
@@ -120,18 +117,23 @@ exports.addLieuVisite = function(req, res, next) {
         // configs is now a map of JSON data
         console.log('Config', configs);
         async.forEachOf(names, (value, key, callback) => {
-            let lieuVisite = new LieuVisiteModel(value);
+           /* let lieuVisite = new LieuVisiteModel(value);
             lieuVisite.save(err => {
                 if(!err) callback();
                 else return callback(err);
-            })
+            })*/
+
+            console.log("LIEU", value);
+            callback();
+
         }, err => {
-            if(err) return callback(err);
-            return res.status(200).send({
-                configs,
-                names
-            });
-        })        
+            if(err) return callback(err);            
+        })  
+        
+        return res.status(200).send({
+            configs,
+            names
+        });
     });
 
     
