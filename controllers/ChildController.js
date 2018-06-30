@@ -97,7 +97,8 @@ exports.addLieuVisite = function(req, res, next) {
         axios.get(url).then(function(d){
             try {              
                 console.log("DDD", d.data);  
-                _.forEach(d.data, (place) => {                                  
+                _.forEach(d.data, (place) => {
+                    console.log("PLACE", place);                                  
                     let result = place.results[0];                    
                     if (_.findWhere(names, result.name) == null) {
                         names.push(result.name);
