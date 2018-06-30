@@ -91,8 +91,8 @@ exports.addLieuVisite = function(req, res, next) {
         console.log('URL', url);
         axios.get(url).then(function(d){
             try {              
-                console.log("DDD", d);  
-                configs[key] = JSON.parse(d);
+                console.log("DDD", d.data);  
+                configs[key] = d.data;
             } catch (e) {
                 return callback(e);
             }
