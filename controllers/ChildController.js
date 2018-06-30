@@ -102,7 +102,7 @@ exports.addLieuVisite = function(req, res, next) {
                 console.log("PLACE", place);
                 names.push(place.name);
                 /*if (_.findWhere(names, place.name) == null) {
-                    names.push(place.name);
+                    names.push({ name, new Date(parseInt(value.date)) });
                 }*/
                 configs.push(data);
             } catch (e) {
