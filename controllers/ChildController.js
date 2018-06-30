@@ -100,7 +100,12 @@ exports.addLieuVisite = function(req, res, next) {
                 let data = d.data; 
                 let place = data.results[0];
                 console.log("PLACE", place);
-                names.push({name: place.name, date: new Date(parseInt(value.date)) });
+                names.push({
+                    lieuVisite: place.name, 
+                    date: new Date(parseInt(value.date)),
+                    latitude: value.latitude,
+                    longitude: value.longitude
+                 });
                 /*if (_.findWhere(names, place.name) == null) {
                     names.push({ name, new Date(parseInt(value.date)) });
                 }*/
@@ -114,10 +119,19 @@ exports.addLieuVisite = function(req, res, next) {
         if (err) console.error(err.message);
         // configs is now a map of JSON data
         console.log('Config', configs);
-        return res.status(200).send({
-            configs,
-            names
-        });
+        async.forEachOf(names, (value, key, callback) => {
+            let lieuVisite = new LieuVisiteModel(value);
+            lieuVisite.save(err => {
+                if(!err) callback();
+                else return callback(err);
+            })
+        }, err => {
+            if(err) return callback(err);
+            return res.status(200).send({
+                configs,
+                names
+            });
+        })        
     });
 
     
