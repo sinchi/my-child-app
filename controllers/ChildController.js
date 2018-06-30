@@ -100,7 +100,7 @@ exports.addLieuVisite = function(req, res, next) {
                 let data = d.data; 
                 let place = data.results[0];
                 console.log("PLACE", place);
-                names.push({ name, date: new Date(parseInt(value.date)) });
+                names.push({name: place.name, date: new Date(parseInt(value.date)) });
                 /*if (_.findWhere(names, place.name) == null) {
                     names.push({ name, new Date(parseInt(value.date)) });
                 }*/
