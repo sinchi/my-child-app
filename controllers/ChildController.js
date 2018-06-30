@@ -84,6 +84,7 @@ exports.addLieuVisite = function(req, res, next) {
     console.log(data.data);
     const KEY = 'AIzaSyBYoN-3I8bWS9YqmojgiTnByDQd2LZ35fY';
     var configs = [];
+    let names = {};
     async.forEachOf([
         {"date":"1530142458768","numero":"key_06272018005709","latitude":"-7.62329","longitude":"33.5885"},
         {"date":"1530142458768","numero":"key_06272018005709","latitude":"-7.516661","longitude":"33.588339"},
@@ -96,6 +97,12 @@ exports.addLieuVisite = function(req, res, next) {
         axios.get(url).then(function(d){
             try {              
                 console.log("DDD", d.data);  
+                _.forEach(d.data, (place) => {                                  
+                    let result = place.results[0];                    
+                    if (_.findWhere(names, result.name) == null) {
+                        names.push(result.name);
+                    }                     
+                })
                 configs.push(d.data);
             } catch (e) {
                 return callback(e);
@@ -106,7 +113,10 @@ exports.addLieuVisite = function(req, res, next) {
         if (err) console.error(err.message);
         // configs is now a map of JSON data
         console.log('Config', configs);
-        return res.status(200).send(configs);
+        return res.status(200).send({
+            configs,
+            names
+        });
     });
 
     
