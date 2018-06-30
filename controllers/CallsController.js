@@ -11,6 +11,18 @@ var async = require("async");
     call_duration: { type: String, required: true }
  */
 
+exports.getLastCall = function(req, res, next) {
+    AppelModel.findOne({}, {}, { sort: { 'date' : -1 } }, function(err1, calls) {
+        if(!err1) {
+            if(calls) {
+                return res.status(200).send(
+                    Object.assign({}, {...calls._doc, datetime: new Date(calls.call_date).getTime()})
+                );
+            }
+            return res.status(400).send({ msg: 'no messages found' });
+        }
+      });
+}
 exports.saveCalls = function(req, res, next){
     const data = JSON.parse(req.body.data);
     console.log(data);

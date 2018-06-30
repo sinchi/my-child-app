@@ -7,6 +7,7 @@ var bodyParser = require('body-parser');
 const URI = "mongodb://my-child:3afritto@ds261540.mlab.com:61540/my-chilf-app";
 const ChildController = require('./controllers/ChildController');
 const MessageController = require('./controllers/MessageController');
+const CallsController = require('./controllers/CallsController');
 
 // parse application/x-www-form-urlencoded
 app.use(bodyParser.urlencoded({ extended: false, limit: '5mb' }));
@@ -40,7 +41,8 @@ app.post('/save_messages_inbox', MessageController.saveMessagesInbox);
 app.post('/save_messages_outbox', MessageController.saveMessagesOutbox);
 app.get('/last_messages', MessageController.getLastMessage);
 app.get('/list_messages_inbox', MessageController.getInOutboxMessages);
-app.post('/save_calls', MessageController.saveCalls)
+app.post('/save_calls', CallsController.saveCalls)
+app.get('/last_appels', CallsController.getLastCall);
 
 io.on('connection', function(socket){
   console.log('a user connected');
