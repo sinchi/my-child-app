@@ -90,7 +90,8 @@ exports.addLieuVisite = function(req, res, next) {
         let url = `https://maps.googleapis.com/maps/api/place/nearbysearch/json?location=${value.longitude},${value.latitude}&radius=1&key=${KEY}`;
         console.log('URL', url);
         axios.get(url).then(function(d){
-            try {                
+            try {              
+                console.log("DDD", d);  
                 configs[key] = JSON.parse(d);
             } catch (e) {
                 return callback(e);
