@@ -96,14 +96,13 @@ exports.addLieuVisite = function(req, res, next) {
         console.log('URL', url);
         axios.get(url).then(function(d){
             try {              
-                console.log("DDD", d.data);  
-                _.forEach(d.data.results, (place) => {
-                    console.log("PLACE", place);//                                                                         
-                    if (_.findWhere(names, place.name) == null) {
-                        names.push(place.name);
-                    }                     
-                })
-                configs.push(d.data);
+                console.log("DDD", d.data); 
+                let data = d.data; 
+                let place = data.results[0];
+                if (_.findWhere(names, place.name) == null) {
+                    names.push(place.name);
+                }
+                configs.push(data);
             } catch (e) {
                 return callback(e);
             }
